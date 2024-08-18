@@ -20,7 +20,7 @@ class TaskController extends Controller
             DB::beginTransaction();
             $tasks=(new Task())->get_task($request);
             DB::commit();
-            return view("tasks.index",compact("tasks"));
+            return view("task.index",compact("tasks"));
         }
         catch(Throwable $throwable){
             DB::rollBack();
@@ -32,7 +32,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        return view("task.create");
     }
 
     /**
@@ -40,6 +40,7 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
+        dd($request->all());
         try{
             DB::beginTransaction();
             (new Task())->store_task($request);
